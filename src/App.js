@@ -1,16 +1,23 @@
 import './App.css';
 import freeCodeCampLogo from './imagenes/freecodecamp-logo.png'; // forma de importar imagenes
 import Boton from './componentes/Boton';
+import Contador from './componentes/Contador';
+import Footer from './componentes/Footer';
+import { useState } from 'react'; // estados
 
 function App() {
 
+  const [numeroClicks, setNumeroClicks] = useState(0); // 0 valor inicial de numero de clicks
+
   const manejarClick = () => {
-    console.log('click');
-  }
+    // console.log('click');
+    setNumeroClicks(numeroClicks + 1);
+  };
 
   const reiniciarContador = () => {
-    console.log('reiniciar');
-  }
+    // console.log('reiniciar');
+    setNumeroClicks(0);
+  };
 
   return (
     <div className='App'>
@@ -21,16 +28,24 @@ function App() {
           alt='Logo de freeCodeCamp' />
       </div>
 
-      <div className='contenedor-contador'>
+      <div>
+        <Contador
+          numeroClicks={numeroClicks} />
+
         <Boton
           texto='click'
           btnClick={true}
-          manejarClick={ manejarClick } />
+          manejarClick={manejarClick} />
 
         <Boton
           texto='reiniciar'
           btnClick={false}
-          manejarClick={ reiniciarContador } />
+          manejarClick={reiniciarContador} />
+      </div>
+
+      <div>
+        <Footer
+          msg='Tomas Aybar' />
       </div>
     </div>
   );
